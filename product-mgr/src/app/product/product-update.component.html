@@ -1,0 +1,50 @@
+<div class="component">
+  <div *ngIf="!product"> loading ... </div>
+
+  <div *ngIf="product">
+    <div class="muted"> product-update.component.html </div>
+
+    <form #f="ngForm" (ngSubmit)="updateProduct()">
+
+      <table>
+        <tr>
+          <td>
+            <div>
+              <label for="name">Name</label>
+            </div>
+            <input id="name" type="text" name="name" [(ngModel)]="product.name" required/>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>
+              <label for="price">Price</label>
+            </div>
+            <input id="price" type="text" name="price" [(ngModel)]="product.price" required/>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="5">
+            <div>
+              <label for="desc">Description</label>
+            </div>
+            <textarea cols="50" rows="10" id="desc" type="text" name="description" [(ngModel)]="product.description" required>{{product.description}} </textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div>
+              <form (ngSubmit)="deleteProduct()"> <button class="btn btn-default">Delete Product</button> </form>
+            </div>
+          </td>
+          <td style="text-align: right"><button class="btn btn-primary" [disabled]="!f.valid">Update</button></td>
+        </tr>
+      </table>
+    </form>
+
+  </div>
+  <br/>
+  <br/>
+  <br/>
+  <a  [routerLink]="['/']">Back</a>
+</div>

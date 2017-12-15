@@ -19,7 +19,12 @@ router.get('/', function (req, res, next) {
     let findText = req.query.findText.toLowerCase();
 
     let _products = _.filter(db.products, product => {
-            return _.includes(product.name.toLowerCase(), findText);
+        console.log(findText);
+    console.log(product.price);
+    console.log(product.price == findText);
+    console.log('-------------------');
+        let list = _.includes(product.name.toLowerCase(), findText) ||  _.includes(product.description.toLowerCase(), findText) || (product.price == findText);
+    return list;
 });
 
     res.send(_products);

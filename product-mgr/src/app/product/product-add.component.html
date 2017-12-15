@@ -1,0 +1,28 @@
+<div class="component">
+  <form #f="ngForm" (ngSubmit)="addProduct(f.value)">
+    <div class="table">
+      <div class="row">
+        <div class="col-md-2"> <label for="price">Price</label> </div>
+        <div class="col-md-1"> <input id="price" type="text" name="price" required ngModel /> </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"> <label for="name">Name</label></div>
+        <div class="col-md-1"> <input id="name" type="text" name="name" required ngModel /></div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"> <label for="desc">Decription</label></div>
+        <div class="col-md-1"> <input id="desc" type="text" name="description" required ngModel /></div>
+      </div>
+      <div class="row">
+        <div class="col-sm-1"> <button [disabled]="!f.valid" class="btn btn-primary">Add</button> </div>
+      </div>
+    </div>
+  </form>
+  {{
+  f.value.price+' '+
+  f.value.name+' '+
+  f.value.description
+  }}
+  <div class="muted"> product-add.component.html </div>
+</div>
+<br/>

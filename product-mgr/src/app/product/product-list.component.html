@@ -1,0 +1,49 @@
+<div class="component">
+
+  <div class="muted"> product-list.component.html</div>
+  <br/>
+  <div class="pull-left">
+    <input type="text" [formControl]="findText" placeholder="Search..."/>
+  </div>
+  <div class="tools clearfix">
+    <div class="pull-right">
+      <form class="generate" (ngSubmit)="randomProduct()"> <button class="btn btn-default">Generate</button> </form>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Description</th>
+    </tr>
+
+    <tr *ngFor="let product of products">
+      <td><a (click)="deleteProduct($event, product)"><span class="glyphicon glyphicon-remove"></span> </a></td>
+      <td><a [routerLink]="['../', product.id]">{{product.name}}</a></td>
+      <td>{{product.price | currency: 'USD':'symbol':'1.2' }}</td>
+      <td>{{product.description != undefined ? product.description.substring(0, 50)+'...': null }}</td>
+    </tr>
+  </table>
+
+  <a class="btn btn-primary" data-toggle="modal" href="#addProduct">Add</a>
+  <div class="modal fade" id="addProduct">
+    <div class="modal-dialog">
+      <div class="modal-content component">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Add Product</h4>
+        </div>
+        <div class="modal-body">
+          <app-product-add (newProduct)="addProduct($event)"></app-product-add>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        <div class="muted"> modal: product-list.component.html</div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+</div>
